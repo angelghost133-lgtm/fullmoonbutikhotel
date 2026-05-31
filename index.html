@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full Moon HOTEL| Resmi Web Sitesi</title>
-    <!-- Modern Tasarım ve İkonlar İçin Gerekli Kütüphaneler -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -12,19 +11,17 @@
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600&display=swap');
         body { font-family: 'Poppins', sans-serif; }
         .serif-font { font-family: 'Playfair Display', serif; }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- 1. ÜST MENÜ (HEADER) -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Full Moon Butik HOTEL (Burayı Değiştirebilirsiniz) -->
             <a href="#" class="text-2xl font-bold tracking-widest text-slate-900 serif-font">
                 Full Moon   <span class="text-amber-600">Hotel</span>
             </a>
             
-            <!-- Menü Linkleri -->
             <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
                 <a href="#" class="text-amber-600">Ana Sayfa</a>
                 <a href="#odalar" class="hover:text-amber-600 transition">Odalarımız</a>
@@ -32,51 +29,52 @@
                 <a href="#iletisim" class="hover:text-amber-600 transition">İletişim</a>
             </nav>
 
-            <!-- Rezervasyon Butonu -->
-            <a href="#rezervasyon" class="bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold px-6 py-3 tracking-wider uppercase transition hidden sm:block">
+            <button onclick="openReservation('King Superior Oda', 70)" class="bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold px-6 py-3 tracking-wider uppercase transition hidden sm:block">
                 Hemen Rezervasyon Yap
-            </a>
+            </button>
         </div>
     </header>
 
-    <!-- 2. BÜYÜK GİRİŞ GÖRSELİ (HERO SECTION) -->
-    <section class="relative h-[80vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1777908484446-04dbdc873fe1?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+    <section class="relative h-[80vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1777908484446-04dbdc873fe1?q=80&w=1032&auto=format&fit=crop');">
         <div class="text-center text-white px-4">
             <h1 class="text-4xl md:text-6xl font-light tracking-wide serif-font mb-4">Şehrin Kalbinde Lüks Bir Deneyim</h1>
-            <p class="text-lg md:text-xl font-light tracking-wider max-w-2xl mx-auto mb-8">İstanbul'un prestijli konumunda konfor og ihtişamı bir arada yaşayın.</p>
+            <p class="text-lg md:text-xl font-light tracking-wider max-w-2xl mx-auto mb-8">İstanbul'un prestijli konumunda konfor ve ihtişamı bir arada yaşayın.</p>
         </div>
 
-        <!-- REZERVASYON ÇUBUĞU (BARI) -->
+        <!-- ANA REZERVASYON FORMU -->
         <div id="rezervasyon" class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-full max-w-5xl px-4">
             <div class="bg-white p-6 shadow-xl grid grid-cols-1 sm:grid-cols-4 gap-4 text-gray-700">
                 <div>
                     <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Giriş Tarihi</label>
-                    <input type="date" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
+                    <input type="date" id="main-checkin" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Çıkış Tarihi</label>
-                    <input type="date" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
+                    <input type="date" id="main-checkout" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Misafir Sayısı</label>
-                    <select class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
-                        <option>1 Yetişkin</option>
-                        <option selected>2 Yetişkin</option>
-                        <option>3 Yetişkin</option>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Oda Tipi</label>
+                    <select id="room-selection" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
+                        <option value="King Superior Oda|70">King Superior Oda (70 EUR)</option>
+                        <option value="Deluxe Double Oda|75">Deluxe Double Oda (75 EUR)</option>
+                        <option value="Geniş Aile Odası|80" selected>Geniş Aile Odası (80 EUR)</option>
+                        <option value="Junior Süit|90">Junior Süit (90 EUR)</option>
+                        <option value="Full Moon Executive Süit|90">Full Moon Executive Süit (90 EUR)</option>
+                        <option value="Balayı Süiti|100">Balayı Süiti (100 EUR)</option>
                     </select>
                 </div>
                 <div class="flex items-end">
-                    <button onclick="alert('Rezervasyon sistemine yönlendiriliyorsunuz...')" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold py-2.5 transition uppercase tracking-wider">
-                        Odaları Listele
-                    </button>
+                   <button onclick="triggerMainForm()" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold py-2.5 transition uppercase tracking-wider">
+                   Odayı Seç & İlerle
+                  </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="h-20"></div> <!-- Boşluk için -->
-
-    <!-- 3. ODALARIMIZ BÖLÜMÜ -->
+    <div class="h-20"></div> 
+    
+    <!-- ODALAR BÖLÜMÜ -->
     <section id="odalar" class="max-w-7xl mx-auto px-6 py-16">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-normal serif-font tracking-wide">Seçkin Odalarımız & Süitlerimiz</h2>
@@ -85,48 +83,272 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Oda 1 -->
-            <div class="bg-white shadow-md overflow-hidden group">
-                <div class="overflow-hidden h-64">
-                    <img src="https://plus.unsplash.com/premium_photo-1675616563084-63d1f129623d?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Oda" class="w-full h-full object-cover">
+            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden h-64">
+                        <img src="https://plus.unsplash.com/premium_photo-1675616563084-63d1f129623d?q=80&w=869" alt="King Superior Oda" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="p-6 pb-0">
+                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">King Superior Oda</h3>
+                        <p class="text-gray-600 text-sm mb-4">Şehir manzaralı, geniş çalışma alanına sahip lüks tasarım konsepti.</p>
+                    </div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">King Superior Oda</h3>
-                    <p class="text-gray-600 text-sm mb-4">Şehir manzaralı, geniş çalışma alanına sahip lüks tasarım konsepti.</p>
+                <div>
+                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
+                        <span class="text-lg font-semibold text-slate-950">70 EUR</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <button onclick="openReservation('King Superior Oda', 70)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
+                    </div>
                 </div>
             </div>
-            <!-- Diğer odaları buraya ekleyebilirsiniz... -->
+
+            <!-- Oda 2 -->
+            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=870" alt="Deluxe Double Oda" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="p-6 pb-0">
+                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Deluxe Double Oda</h3>
+                        <p class="text-gray-600 text-sm mb-4">Modern detaylarla süslenmiş, çift kişilik geniş yatak ve şık banyo deneyimi.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
+                        <span class="text-lg font-semibold text-slate-950">75 EUR</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <button onclick="openReservation('Deluxe Double Oda', 75)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oda 3 (Süit - 90 EUR) -->
+            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=774" alt="Junior Suit" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="p-6 pb-0">
+                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Junior Süit</h3>
+                        <p class="text-gray-600 text-sm mb-4">Kendine ait küçük bir oturma alanına sahip, ekstra konfor arayanlar için ideal.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
+                        <span class="text-lg font-semibold text-amber-600">90 EUR</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <button onclick="openReservation('Junior Süit', 90)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oda 4 (Süit - 90 EUR) -->
+            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=774" alt="Full Moon Executive Suit" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="p-6 pb-0">
+                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Full Moon Executive Süit</h3>
+                        <p class="text-gray-600 text-sm mb-4">Panoramik İstanbul manzarası eşliğinde, VIP hizmet ayrıcalıkları sunan özel süit.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
+                        <span class="text-lg font-semibold text-amber-600">90 EUR</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <button onclick="openReservation('Full Moon Executive Süit', 90)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oda 5 (Aile Odası - 80 EUR) -->
+            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=870" alt="Aile Odası" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="p-6 pb-0">
+                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Geniş Aile Odası</h3>
+                        <p class="text-gray-600 text-sm mb-4">Bağlantılı oda seçeneğiyle, ailenizle birlikte güvenli ve ferah konaklama imkanı.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
+                        <span class="text-lg font-semibold text-amber-600">80 EUR</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <button onclick="openReservation('Geniş Aile Odası', 80)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oda 6 (Balayı Süiti - 100 EUR) -->
+            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=774" alt="Honeymoon Suit" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="p-6 pb-0">
+                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Balayı Süiti</h3>
+                        <p class="text-gray-600 text-sm mb-4">Jakuzili, özel ikramlar ve romantik dekorasyon detaylarıyla unutulmaz anlar için.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
+                        <span class="text-lg font-semibold text-amber-600">100 EUR</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <button onclick="openReservation('Balayı Süiti', 100)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 4. YENİ EKLENEN İLETİŞİM VE FOOTER BÖLÜMÜ -->
+    <!-- DİNAMİK REZERVASYON PANELİ -->
+    <div id="booking-modal" class="fixed inset-0 bg-black/60 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-2xl rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div class="bg-slate-900 text-white p-6 flex justify-between items-center">
+                <h3 class="serif-font text-xl tracking-wide">Güvenli Rezervasyon Paneli</h3>
+                <button onclick="closeReservation()" class="text-gray-400 hover:text-white transition text-xl">&times;</button>
+            </div>
+            
+            <div class="p-6 max-h-[75vh] overflow-y-auto">
+                <div class="flex items-center justify-center space-x-4 mb-8 text-xs font-semibold uppercase tracking-wider">
+                    <div id="step-1-indicator" class="text-amber-600 border-b-2 border-amber-600 pb-1">1. Bilgiler</div>
+                    <div class="text-gray-300">&rarr;</div>
+                    <div id="step-2-indicator" class="text-gray-400 pb-1">2. Ödeme Seçenekleri</div>
+                </div>
+
+                <!-- ADIM 1 -->
+                <div id="booking-step-1" class="space-y-4">
+                    <div class="bg-amber-50 p-4 rounded border border-amber-200/60 mb-4 space-y-1">
+                        <p class="text-sm text-slate-800 font-medium">Seçilen Oda: <span id="modal-room-name" class="font-bold text-amber-700">-</span></p>
+                        <p class="text-xs text-gray-600">Gecelik Fiyat: <span id="modal-room-price" class="font-semibold text-slate-900">-</span></p>
+                        <p class="text-xs text-amber-900 font-medium bg-amber-200/40 px-2 py-1 inline-block rounded">Hesaplanan Süre: <span id="modal-total-days" class="font-bold">-</span></p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Adınız Soyadınız</label>
+                            <input type="text" id="guest-name" placeholder="John Doe" class="w-full border border-gray-300 p-2.5 text-sm rounded focus:outline-amber-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">E-Posta Adresi</label>
+                            <input type="email" id="guest-email" placeholder="ornek@mail.com" class="w-full border border-gray-300 p-2.5 text-sm rounded focus:outline-amber-600">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Telefon Numarası</label>
+                        <input type="tel" id="guest-phone" placeholder="+90" class="w-full border border-gray-300 p-2.5 text-sm rounded focus:outline-amber-600">
+                    </div>
+
+                    <button onclick="goToPaymentStep()" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold py-3 rounded transition uppercase tracking-wider mt-4">
+                        Ödeme Aşamasına İlerle &rarr;
+                    </button>
+                </div>
+
+                <!-- ADIM 2 (DÜZELTİLEN GERÇEK HESAPLAMA ALANI) -->
+                <div id="booking-step-2" class="space-y-6 hidden">
+                    <div class="bg-slate-900 text-white p-4 rounded flex justify-between items-center">
+                        <div class="text-left">
+                            <span class="block text-xs text-gray-400 tracking-wide font-light uppercase">Toplam Süre (<span id="summary-days">1</span> Gece)</span>
+                            <span class="text-sm tracking-wide font-light">TOPLAM ÖDENECEK TUTAR:</span>
+                        </div>
+                        <span id="final-total-price" class="text-2xl font-bold text-amber-500">-</span>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-3">Ödeme Yöntemi Seçiniz</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="border-2 border-amber-600 rounded p-4 flex items-start space-x-3 cursor-pointer bg-amber-50/40">
+                                <input type="radio" name="payment-method" checked class="mt-1 accent-amber-600" onclick="togglePaymentFields('card')">
+                                <div>
+                                    <span class="block text-sm font-semibold text-slate-900">Kredi Kartı / Banka Kartı</span>
+                                    <span class="block text-xs text-gray-500 mt-1">Anında onaylanır, güvenli 3D ödeme.</span>
+                                </div>
+                            </label>
+                            <label class="border border-gray-200 rounded p-4 flex items-start space-x-3 cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="payment-method" class="mt-1 accent-amber-600" onclick="togglePaymentFields('bank')">
+                                <div>
+                                    <span class="block text-sm font-semibold text-slate-900">Banka Havalesi / EFT</span>
+                                    <span class="block text-xs text-gray-500 mt-1">Hesap numaralarımıza 24 saat içinde transfer.</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="card-payment-inputs" class="space-y-3 bg-gray-50 p-4 rounded border border-gray-200">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-1">Kart Üzerindeki İsim</label>
+                            <input type="text" class="w-full bg-white border border-gray-300 p-2 text-sm rounded focus:outline-amber-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-1">Kart Numarası</label>
+                            <input type="text" placeholder="0000 0000 0000 0000" class="w-full bg-white border border-gray-300 p-2 text-sm rounded focus:outline-amber-600">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Son Kullanma (AA/YY)</label>
+                                <input type="text" placeholder="MM/YY" class="w-full bg-white border border-gray-300 p-2 text-sm rounded focus:outline-amber-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">CVC / CVV</label>
+                                <input type="text" placeholder="000" class="w-full bg-white border border-gray-300 p-2 text-sm rounded focus:outline-amber-600">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="bank-payment-inputs" class="hidden bg-gray-50 p-4 rounded border border-gray-200 text-sm space-y-2">
+                        <p class="font-semibold text-slate-900">Full Moon Otelcilik A.Ş.</p>
+                        <p class="text-xs text-gray-600">Ziraat Bankası - TR56 0001 0009 9012 3456 5001</p>
+                        <p class="text-xs text-gray-400 italic">* Rezervasyon kodunuzu transfer açıklama kısmına yazınız.</p>
+                    </div>
+
+                    <div class="flex space-x-3">
+                        <button onclick="goToInfoStep()" class="w-1/3 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-3 rounded transition uppercase tracking-wider">
+                            Geri Dön
+                        </button>
+                        <button onclick="completeBooking()" class="w-2/3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded transition uppercase tracking-wider shadow-md">
+                            Ödemeyi Tamamla ve Rezervasyonu Bitir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- İLETİŞİM VE FOOTER -->
     <section id="iletisim" class="bg-slate-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-            
-            <!-- İletişim Bilgileri Kartı -->
             <div>
                 <h3 class="text-xl font-medium serif-font text-amber-600 mb-6 tracking-wide">İletişim Bilgileri</h3>
                 <ul class="space-y-4 text-sm text-gray-400">
                     <li class="flex items-start">
                         <i class="fa-solid fa-location-dot mt-1 mr-3 text-amber-600"></i>
-                        <span>
-                            <!-- BURAYI DEĞİŞTİRİN: ADRESİNİZ -->
-                            Şehsuvar Bey Mah. Behram Çavuş Sok. No:8, Fatih / İstanbul
-                        </span>
+                        <span>Şehsuvar Bey Mah. Behram Çavuş Sok. No:8, Fatih / İstanbul</span>
                     </li>
                     <li class="flex items-center">
                         <i class="fa-solid fa-phone mr-3 text-amber-600"></i>
-                        <!-- BURAYI DEĞİŞTİRİN: TELEFON NUMARANIZ -->
                         <a href="tel:+905304004199" class="hover:text-white transition">+90 (530) 400 41 99 </a>
                     </li>
                     <li class="flex items-center">
                         <i class="fa-solid fa-envelope mr-3 text-amber-600"></i>
-                        <!-- BURAYI DEĞİŞTİRİN: E-POSTA ADRESİNİZ -->
                         <a href="mailto:info@fullmoonhotel.com" class="hover:text-white transition">info@fullmoonhotel.com</a>
                     </li>
                 </ul>
             </div>
-
-            <!-- Hızlı Menü -->
             <div>
                 <h3 class="text-xl font-medium serif-font text-amber-600 mb-6 tracking-wide">Kurumsal</h3>
                 <ul class="space-y-2 text-sm text-gray-400">
@@ -135,8 +357,6 @@
                     <li><a href="#" class="hover:text-white transition">Konaklama Şartları</a></li>
                 </ul>
             </div>
-
-            <!-- Sosyal Medya & Telif -->
             <div class="flex flex-col justify-between">
                 <div>
                     <h3 class="text-xl font-medium serif-font text-amber-600 mb-6 tracking-wide">Sosyal Medya</h3>
@@ -150,9 +370,112 @@
                     &copy; 2026 Full Moon HOTEL. Tüm Hakları Saklıdır.
                 </p>
             </div>
-
         </div>
     </section>
 
+    <!-- HESAPLAMA MANTIĞI YENİLENEN JAVASCRIPT KODLARI -->
+    <script>
+        let selectedRoomName = "";
+        let selectedRoomPrice = 0;
+        let totalCalculatedDays = 1;
+
+        // Tarih girdilerini okuyup farkı milisaniyeden güne çeviren dinamik fonksiyon
+        function calculateDays() {
+            const checkinVal = document.getElementById('main-checkin').value;
+            const checkoutVal = document.getElementById('main-checkout').value;
+
+            if (checkinVal && checkoutVal) {
+                const date1 = new Date(checkinVal);
+                const date2 = new Date(checkoutVal);
+                
+                const timeDiff = date2.getTime() - date1.getTime();
+                const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                
+                // Kullanıcı hatalı tarih seçerse veya aynı günü seçerse minimum 1 gece sayar
+                return dayDiff > 0 ? dayDiff : 1;
+            }
+            return 1; // Eğer tarih seçilmediyse otomatik 1 gün hesaplar
+        }
+
+        // Üst arama motorundaki "Odayı Seç & İlerle" butonu tetiklendiğinde çalışan fonksiyon
+        function triggerMainForm() {
+            const selectElement = document.getElementById('room-selection');
+            const selectedValue = selectElement.value.split('|');
+            const roomName = selectedValue[0];
+            const roomPrice = parseInt(selectedValue[1]);
+
+            openReservation(roomName, roomPrice);
+        }
+
+        // PANELİ AÇAN VE ASIL TOPLAM HESAPLAMAYI YAPAN ANA FONKSİYON
+        function openReservation(roomName, price) {
+            selectedRoomName = roomName;
+            selectedRoomPrice = price;
+
+            // Tarih seçilip seçilmediğini anlık olarak kontrol eder ve gün sayısını günceller
+            totalCalculatedDays = calculateDays();
+
+            // Matematiksel Toplam Fiyat Hesaplama (Gün Sayısı x Oda Fiyatı)
+            const finalTotalPrice = selectedRoomPrice * totalCalculatedDays;
+
+            // DOM Elemanlarını Güncelleme
+            document.getElementById('modal-room-name').innerText = roomName;
+            document.getElementById('modal-room-price').innerText = price + " EUR (Gecelik)";
+            document.getElementById('modal-total-days').innerText = totalCalculatedDays + " Gece";
+            
+            // Ödeme sayfasındaki (Adım 2) toplam alanlarını senkronize etme
+            document.getElementById('summary-days').innerText = totalCalculatedDays;
+            document.getElementById('final-total-price').innerText = finalTotalPrice + " EUR";
+            
+            // Paneli görünür yap
+            document.getElementById('booking-modal').classList.remove('hidden');
+            goToInfoStep();
+        }
+
+        function closeReservation() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function goToPaymentStep() {
+            const name = document.getElementById('guest-name').value;
+            const email = document.getElementById('guest-email').value;
+            const phone = document.getElementById('guest-phone').value;
+
+            if(!name || !email || !phone) {
+                alert("Lütfen tüm iletişim bilgilerini eksiksiz doldurunuz.");
+                return;
+            }
+
+            document.getElementById('booking-step-1').classList.add('hidden');
+            document.getElementById('booking-step-2').classList.remove('hidden');
+            
+            document.getElementById('step-1-indicator').className = "text-gray-400 pb-1";
+            document.getElementById('step-2-indicator').className = "text-amber-600 border-b-2 border-amber-600 pb-1";
+        }
+
+        function goToInfoStep() {
+            document.getElementById('booking-step-2').classList.add('hidden');
+            document.getElementById('booking-step-1').classList.remove('hidden');
+
+            document.getElementById('step-2-indicator').className = "text-gray-400 pb-1";
+            document.getElementById('step-1-indicator').className = "text-amber-600 border-b-2 border-amber-600 pb-1";
+        }
+
+        function togglePaymentFields(type) {
+            if(type === 'card') {
+                document.getElementById('card-payment-inputs').classList.remove('hidden');
+                document.getElementById('bank-payment-inputs').classList.add('hidden');
+            } else {
+                document.getElementById('card-payment-inputs').classList.add('hidden');
+                document.getElementById('bank-payment-inputs').classList.remove('hidden');
+            }
+        }
+
+        function completeBooking() {
+            const finalTotalPrice = selectedRoomPrice * totalCalculatedDays;
+            alert("Tebrikler! " + totalCalculatedDays + " gecelik rezervasyon talebiniz ve " + finalTotalPrice + " EUR tutarındaki ödeme işleminiz başarıyla alındı.");
+            closeReservation();
+        }
+    </script>
 </body>
 </html>
