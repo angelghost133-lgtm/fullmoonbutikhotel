@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Moon HOTEL| Resmi Web Sitesi</title>
+    <!-- Modern Tasarım ve İkonlar İçin Gerekli Kütüphaneler -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Full Moon Butik HOTEL tarzı lüks yazı tipi fontu */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .serif-font { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- 1. ÜST MENÜ (HEADER) -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Full Moon Butik HOTEL (Burayı Değiştirebilirsiniz) -->
+            <a href="#" class="text-2xl font-bold tracking-widest text-slate-900 serif-font">
+                Full Moon   <span class="text-amber-600">Hotel</span>
+            </a>
+            
+            <!-- Menü Linkleri -->
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                <a href="#" class="text-amber-600">Ana Sayfa</a>
+                <a href="#odalar" class="hover:text-amber-600 transition">Odalarımız</a>
+                <a href="#hizmetler" class="hover:text-amber-600 transition">Hizmetler</a>
+                <a href="#iletisim" class="hover:text-amber-600 transition">İletişim</a>
+            </nav>
+
+            <!-- Rezervasyon Butonu -->
+            <a href="#rezervasyon" class="bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold px-6 py-3 tracking-wider uppercase transition hidden sm:block">
+                Hemen Rezervasyon Yap
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. BÜYÜK GİRİŞ GÖRSELİ (HERO SECTION) -->
+    <section class="relative h-[80vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1777908484446-04dbdc873fe1?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="text-center text-white px-4">
+            <h1 class="text-4xl md:text-6xl font-light tracking-wide serif-font mb-4">Şehrin Kalbinde Lüks Bir Deneyim</h1>
+            <p class="text-lg md:text-xl font-light tracking-wider max-w-2xl mx-auto mb-8">İstanbul'un prestijli konumunda konfor og ihtişamı bir arada yaşayın.</p>
+        </div>
+
+        <!-- REZERVASYON ÇUBUĞU (BARI) -->
+        <div id="rezervasyon" class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-full max-w-5xl px-4">
+            <div class="bg-white p-6 shadow-xl grid grid-cols-1 sm:grid-cols-4 gap-4 text-gray-700">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Giriş Tarihi</label>
+                    <input type="date" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Çıkış Tarihi</label>
+                    <input type="date" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Misafir Sayısı</label>
+                    <select class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
+                        <option>1 Yetişkin</option>
+                        <option selected>2 Yetişkin</option>
+                        <option>3 Yetişkin</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button onclick="alert('Rezervasyon sistemine yönlendiriliyorsunuz...')" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold py-2.5 transition uppercase tracking-wider">
+                        Odaları Listele
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="h-20"></div> <!-- Boşluk için -->
+
+    <!-- 3. ODALARIMIZ BÖLÜMÜ -->
+    <section id="odalar" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-normal serif-font tracking-wide">Seçkin Odalarımız & Süitlerimiz</h2>
+            <div class="w-16 h-0.5 bg-amber-600 mx-auto mt-3"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Oda 1 -->
+            <div class="bg-white shadow-md overflow-hidden group">
+                <div class="overflow-hidden h-64">
+                    <img src="https://plus.unsplash.com/premium_photo-1675616563084-63d1f129623d?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Oda" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">King Superior Oda</h3>
+                    <p class="text-gray-600 text-sm mb-4">Şehir manzaralı, geniş çalışma alanına sahip lüks tasarım konsepti.</p>
+                </div>
+            </div>
+            <!-- Diğer odaları buraya ekleyebilirsiniz... -->
+        </div>
+    </section>
+
+    <!-- 4. YENİ EKLENEN İLETİŞİM VE FOOTER BÖLÜMÜ -->
+    <section id="iletisim" class="bg-slate-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+            
+            <!-- İletişim Bilgileri Kartı -->
+            <div>
+                <h3 class="text-xl font-medium serif-font text-amber-600 mb-6 tracking-wide">İletişim Bilgileri</h3>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-location-dot mt-1 mr-3 text-amber-600"></i>
+                        <span>
+                            <!-- BURAYI DEĞİŞTİRİN: ADRESİNİZ -->
+                            Şehsuvar Bey Mah. Behram Çavuş Sok. No:8, Fatih / İstanbul
+                        </span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fa-solid fa-phone mr-3 text-amber-600"></i>
+                        <!-- BURAYI DEĞİŞTİRİN: TELEFON NUMARANIZ -->
+                        <a href="tel:+905304004199" class="hover:text-white transition">+90 (530) 400 41 99 </a>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fa-solid fa-envelope mr-3 text-amber-600"></i>
+                        <!-- BURAYI DEĞİŞTİRİN: E-POSTA ADRESİNİZ -->
+                        <a href="mailto:info@fullmoonhotel.com" class="hover:text-white transition">info@fullmoonhotel.com</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Hızlı Menü -->
+            <div>
+                <h3 class="text-xl font-medium serif-font text-amber-600 mb-6 tracking-wide">Kurumsal</h3>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Hakkımızda</a></li>
+                    <li><a href="#" class="hover:text-white transition">KVKK Politikası</a></li>
+                    <li><a href="#" class="hover:text-white transition">Konaklama Şartları</a></li>
+                </ul>
+            </div>
+
+            <!-- Sosyal Medya & Telif -->
+            <div class="flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-medium serif-font text-amber-600 mb-6 tracking-wide">Sosyal Medya</h3>
+                    <div class="flex space-x-4 text-xl text-gray-400">
+                        <a href="#" class="hover:text-amber-600 transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-amber-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-amber-600 transition"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-8 md:mt-0">
+                    &copy; 2026 Full Moon HOTEL. Tüm Hakları Saklıdır.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>
