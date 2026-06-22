@@ -3,516 +3,775 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Moon HOTEL| Resmi Web Sitesi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Full Moon Hotel Fatıh  - Premium Booking & Luxury Suite</title>
     <style>
-        /* Full Moon Butik HOTEL tarzı lüks yazı tipi fontu */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
-        .serif-font { font-family: 'Playfair Display', serif; }
-        html { scroll-behavior: smooth; }
+        /* Premium Renk Paleti ve Genel Ayarlar */
+        :root {
+            --primary: #0a1128;      /* Gece Mavisi */
+            --secondary: #1c2541;    /* Premium Grid */
+            --accent: #d4af37;       /* Gold / Altın */
+            --accent-hover: #aa841c; /* Koyu Gold */
+            --text-light: #f4f6f9;   /* Açık Gri */
+            --text-dark: #1e293b;    /* Koyu Gri */
+            --bg-light: #f8fafc;     /* Arka Plan */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigasyon / Premium Header */
+        header {
+            background-color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .lang-switch {
+            padding: 6px 12px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            background: transparent;
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: bold;
+            outline: none;
+        }
+        
+        .lang-switch option {
+            background: var(--primary);
+            color: var(--text-light);
+        }
+
+        /* Hero Alanı */
+        .hero {
+            background: linear-gradient(rgba(10, 17, 40, 0.7), rgba(10, 17, 40, 0.8)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .hero h1 { font-size: 3.2rem; margin-bottom: 15px; letter-spacing: 1px; color: var(--accent); }
+        .hero p { font-size: 1.3rem; max-width: 700px; font-weight: 300; color: var(--text-light); }
+
+        /* Ana Konteyner */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Sayfa Segmentleri Yönetimi */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Başlık Standartları */
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 10px auto 0;
+        }
+
+        /* ================= ANA SAYFA GÖRÜNÜMÜ ================= */
+        .welcome-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            margin-bottom: 40px;
+            border-top: 5px solid var(--accent);
+        }
+        .welcome-box p { font-size: 1.1rem; margin-bottom: 25px; color: #4a5568; }
+
+        /* ================= HAKKIMIZDA GÖRÜNÜMÜ ================= */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+        .about-img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border: 3px solid var(--accent);
+        }
+        .about-text p { margin-bottom: 15px; font-size: 1.05rem; color: #4a5568; text-align: justify; }
+
+        /* ================= ODALARIMIZ GÖRÜNÜMÜ ================= */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .room-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s;
+        }
+        .room-card:hover { transform: translateY(-10px); }
+        .room-img { width: 100%; height: 240px; object-fit: cover; border-bottom: 3px solid var(--accent); }
+        .room-details { padding: 25px; }
+        .room-details h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; }
+        .room-features { list-style: none; margin: 15px 0; font-size: 0.9rem; color: #64748b; }
+        .room-features li { margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .room-price-tag { font-size: 1.6rem; font-weight: bold; color: var(--accent); margin-bottom: 15px; }
+
+        /* ================= REZERVASYON & ÖDEME FORMLARI ================= */
+        .booking-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border-left: 5px solid var(--accent);
+        }
+        .booking-card h3 { color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #4a5568; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; outline: none; }
+        .form-control:focus { border-color: var(--accent); box-shadow: 0 0 5px rgba(212,175,55,0.3); }
+        
+        .price-summary { background: var(--primary); color: white; padding: 20px; border-radius: 8px; margin-top: 20px; border: 2px solid var(--accent); }
+        .price-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 1.1rem; }
+        .total-price { font-size: 1.5rem; font-weight: bold; color: var(--accent); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; }
+
+        /* Ödeme Seçenekleri */
+        .payment-methods { display: flex; gap: 15px; margin-bottom: 20px; }
+        .payment-tab { flex: 1; padding: 15px; border: 2px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold; cursor: pointer; background: #f8fafc; transition: all 0.2s; }
+        .payment-tab.active { border-color: var(--accent); background: #fefcbf; color: var(--primary); }
+        .payment-content { display: none; padding: 15px 0; }
+        .payment-content.active { display: block; }
+        .credit-card-zone { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .credit-card-zone { grid-template-columns: 1fr; } }
+        .bank-transfer-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 6px; }
+
+        /* Sözleşme Kutuları */
+        .legal-box { height: 100px; overflow-y: scroll; border: 1px solid #e2e8f0; padding: 12px; background: #fafafa; font-size: 0.85rem; color: #64748b; margin-bottom: 15px; border-radius: 4px; }
+        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 15px; font-size: 0.9rem; cursor: pointer; }
+
+        /* Butonlar */
+        .btn-premium {
+            background-color: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-premium:hover { background-color: var(--accent-hover); color: white; }
+        .btn-premium:disabled { background-color: #cbd5e1; color: #94a3b8; cursor: not-allowed; }
+
+        .hidden { display: none; }
+
+        /* ================= İLETİŞİM GÖRÜNÜMÜ ================= */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+        .info-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .info-item { margin-bottom: 20px; }
+        .info-item strong { color: var(--primary); display: block; font-size: 1.1rem; }
+
+        footer {
+            background-color: var(--primary);
+            color: #94a3b8;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+            border-top: 3px solid var(--accent);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-widest text-slate-900 serif-font">
-                Full Moon   <span class="text-amber-600">Hotel</span>
-            </a>
-            
-            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-                <a href="#" class="text-amber-600">Ana Sayfa</a>
-                <a href="#hakkimizda" class="hover:text-amber-600 transition">Hakkımızda</a>
-                <a href="#odalar" class="hover:text-amber-600 transition">Odalarımız</a>
-                <a href="#iletisim" class="hover:text-amber-600 transition">İletişim</a>
+    <header>
+        <div class="nav-container">
+            <a onclick="showPage('home')" class="logo">Full Moon Hotel</a>
+            <nav class="nav-links">
+                <a onclick="showPage('home')" id="nav-home" class="active">Ana Sayfa</a>
+                <a onclick="showPage('about')" id="nav-about">Hakkımızda</a>
+                <a onclick="showPage('rooms')" id="nav-rooms">Odalarımız</a>
+                <a onclick="showPage('booking')" id="nav-booking">Rezervasyon</a>
+                <a onclick="showPage('contact')" id="nav-contact">İletişim</a>
+                <select class="lang-switch" id="langSelect" onchange="changeLanguage()">
+                    <option value="tr">TR</option>
+                    <option value="en">EN</option>
+                </select>
             </nav>
-
-            <button onclick="openReservation('King Superior Oda', 70)" class="bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold px-6 py-3 tracking-wider uppercase transition hidden sm:block">
-                Hemen Rezervasyon Yap
-            </button>
         </div>
     </header>
 
-    <section class="relative h-[80vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1777908484446-04dbdc873fe1?q=80&w=1032&auto=format&fit=crop');">
-        <div class="text-center text-white px-4">
-            <h1 class="text-4xl md:text-6xl font-light tracking-wide serif-font mb-4">Şehrin Kalbinde Lüks Bir Deneyim</h1>
-            <p class="text-lg md:text-xl font-light tracking-wider max-w-2xl mx-auto mb-8">İstanbul'un prestijli konumunda konfor ve ihtişamı bir arada yaşayın.</p>
-        </div>
-
-        <!-- ANA REZERVASYON FORMU -->
-        <div id="rezervasyon" class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-full max-w-5xl px-4">
-            <div class="bg-white p-6 shadow-xl grid grid-cols-1 sm:grid-cols-4 gap-4 text-gray-700">
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Giriş Tarihi</label>
-                    <input type="date" id="main-checkin" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Çıkış Tarihi</label>
-                    <input type="date" id="main-checkout" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Oda Tipi</label>
-                    <select id="room-selection" class="w-full border border-gray-300 p-2 text-sm focus:outline-amber-600">
-                        <option value="King Superior Oda|70">King Superior Oda (70 EUR)</option>
-                        <option value="Deluxe Double Oda|75">Deluxe Double Oda (75 EUR)</option>
-                        <option value="Geniş Aile Odası|80" selected>Geniş Aile Odası (80 EUR)</option>
-                        <option value="Junior Süit|90">Junior Süit (90 EUR)</option>
-                        <option value="Full Moon Executive Süit|90">Full Moon Executive Süit (90 EUR)</option>
-                        <option value="Balayı Süiti|100">Balayı Süiti (100 EUR)</option>
-                    </select>
-                </div>
-                <div class="flex items-end">
-                   <button onclick="triggerMainForm()" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold py-2.5 transition uppercase tracking-wider">
-                   Odayı Seç & İlerle
-                  </button>
-                </div>
-            </div>
-        </div>
+    <section class="hero">
+        <h1 id="txt-hero-title">Full Moon Hotel Fatıh </h1>
+        <p id="txt-hero-sub">İstanbul'un Kalbinde, Kusursuz Bir Premium Konaklama ve Konfor Deneyimi</p>
     </section>
 
-    <div class="h-20"></div> 
-    
-    <!-- HAKKIMIZDA BÖLÜMÜ -->
-    <section id="hakkimizda" class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <span class="text-xs font-semibold tracking-widest text-amber-600 uppercase block">Hikayemiz & Vizyonumuz</span>
-                <h2 class="text-3xl md:text-4xl font-normal serif-font tracking-wide text-slate-900">
-                    Geçmişin Zarafetiyle <br><span class="italic text-amber-600">Geleceğin Konforu</span> Buluşuyor
-                </h2>
-                <div class="w-16 h-0.5 bg-amber-600"></div>
-                <p class="text-gray-600 text-sm leading-relaxed">
-                    İstanbul’un kalbi tarihi Fatih yarımadasında konumlanan <strong>Full Moon Hotel</strong>, konuklarına sadece bir konaklama değil, geleneksel Türk misafirperverliğini modern ve lüks bir mimariyle harmanlayan unutulmaz bir yaşam deneyimi sunuyor. Şehrin tarihi dokusuna sadık kalınarak tasarlanan otelimiz, hem iş hem de turistik amaçlı seyahat eden seçkin misafirlerin tüm ihtiyaçlarına yanıt verecek şekilde dizayn edilmiştir.
-                </p>
-                <p class="text-gray-600 text-sm leading-relaxed">
-                    Yenilikçi hizmet anlayışımız, her biri titizlikle dekore edilmiş geniş süitlerimiz ve misafir memnuniyetini merkezine alan profesyonel ekibimizle, İstanbul'daki eviniz olmak için buradayız. Full Moon Hotel çatısı altında geçirdiğiniz her anı ayrıcalıklı kılmak adına sizleri ağırlamaktan mutluluk duyuyoruz.
-                </p>
-                <div class="grid grid-cols-3 gap-4 pt-4 text-center">
-                    <div class="p-4 bg-white shadow-sm border border-gray-100 rounded">
-                        <span class="block text-2xl font-bold text-amber-600 serif-font">7/24</span>
-                        <span class="text-xs text-gray-500 uppercase tracking-wider font-medium">Özel Hizmet</span>
-                    </div>
-                    <div class="p-4 bg-white shadow-sm border border-gray-100 rounded">
-                        <span class="block text-2xl font-bold text-amber-600 serif-font">6+</span>
-                        <span class="text-xs text-gray-500 uppercase tracking-wider font-medium">Lüks Süit Tipi</span>
-                    </div>
-                    <div class="p-4 bg-white shadow-sm border border-gray-100 rounded">
-                        <span class="block text-2xl font-bold text-amber-600 serif-font">100%</span>
-                        <span class="text-xs text-gray-500 uppercase tracking-wider font-medium">Memnuniyet</span>
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-                <img src="https://plus.unsplash.com/premium_photo-1747038289286-b443a0acd8a9?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Full Moon Otel Konsept" class="w-full h-72 object-cover rounded shadow-md mt-8">
-                <img src="https://plus.unsplash.com/premium_photo-1664298948977-e672c8299358?q=80&w=889&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Full Moon Otel İç Mekan" class="w-full h-72 object-cover rounded shadow-md">
+    <div class="container">
+
+        <div id="page-home" class="page-section active">
+            <div class="welcome-box">
+                <h2 class="section-title" id="title-home-welcome">Lüksün Yeni Tanımıyla Tanışın</h2>
+                <p id="p-home-desc">Avrupa yakasının en prestijli lokasyonunda, rüya gibi bir konaklama için hazır mısınız? Özel tasarım suitlerimiz ve dünya standartlarındaki hizmet kalitemizle sizleri bekliyoruz.</p>
+                <button class="btn-premium" style="max-width: 300px; margin: 0 auto;" onclick="showPage('rooms')" id="btn-home-discover">Odaları Keşfet</button>
             </div>
         </div>
-    </section>
 
-    <!-- ODALAR BÖLÜMÜ -->
-    <section id="odalar" class="max-w-7xl mx-auto px-6 py-16">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-normal serif-font tracking-wide">Seçkin Odalarımız & Süitlerimiz</h2>
-            <div class="w-16 h-0.5 bg-amber-600 mx-auto mt-3"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Oda 1 -->
-            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
-                <div>
-                    <div class="overflow-hidden h-64">
-                        <img src="https://plus.unsplash.com/premium_photo-1675616563084-63d1f129623d?q=80&w=869" alt="King Superior Oda" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="p-6 pb-0">
-                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">King Superior Oda</h3>
-                        <p class="text-gray-600 text-sm mb-4">Şehir manzaralı, geniş çalışma alanına sahip lüks tasarım konsepti.</p>
-                    </div>
-                </div>
-                <div>
-                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
-                        <span class="text-lg font-semibold text-slate-950">70 EUR</span>
-                    </div>
-                    <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <button onclick="openReservation('King Superior Oda', 70)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Oda 2 -->
-            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
-                <div>
-                    <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=870" alt="Deluxe Double Oda" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="p-6 pb-0">
-                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Deluxe Double Oda</h3>
-                        <p class="text-gray-600 text-sm mb-4">Modern detaylarla süslenmiş, çift kişilik geniş yatak ve şık banyo deneyimi.</p>
-                    </div>
-                </div>
-                <div>
-                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
-                        <span class="text-lg font-semibold text-slate-950">75 EUR</span>
-                    </div>
-                    <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <button onclick="openReservation('Deluxe Double Oda', 75)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Oda 3 (Süit - 90 EUR) -->
-            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
-                <div>
-                    <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=774" alt="Junior Suit" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="p-6 pb-0">
-                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Junior Süit</h3>
-                        <p class="text-gray-600 text-sm mb-4">Kendine ait küçük bir oturma alanına sahip, ekstra konfor arayanlar için ideal.</p>
-                    </div>
-                </div>
-                <div>
-                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
-                        <span class="text-lg font-semibold text-amber-600">90 EUR</span>
-                    </div>
-                    <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <button onclick="openReservation('Junior Süit', 90)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Oda 4 (Süit - 90 EUR) -->
-            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
-                <div>
-                    <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=774" alt="Full Moon Executive Suit" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="p-6 pb-0">
-                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Full Moon Executive Süit</h3>
-                        <p class="text-gray-600 text-sm mb-4">Panoramik İstanbul manzarası eşliğinde, VIP hizmet ayrıcalıkları sunan özel süit.</p>
-                    </div>
-                </div>
-                <div>
-                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
-                        <span class="text-lg font-semibold text-amber-600">90 EUR</span>
-                    </div>
-                    <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <button onclick="openReservation('Full Moon Executive Süit', 90)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Oda 5 (Aile Odası - 80 EUR) -->
-            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
-                <div>
-                    <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=870" alt="Aile Odası" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="p-6 pb-0">
-                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Geniş Aile Odası</h3>
-                        <p class="text-gray-600 text-sm mb-4">Bağlantılı oda seçeneğiyle, ailenizle birlikte güvenli ve ferah konaklama imkanı.</p>
-                    </div>
-                </div>
-                <div>
-                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
-                        <span class="text-lg font-semibold text-amber-600">80 EUR</span>
-                    </div>
-                    <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <button onclick="openReservation('Geniş Aile Odası', 80)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Oda 6 (Balayı Süiti - 100 EUR) -->
-            <div class="bg-white shadow-md overflow-hidden group flex flex-col justify-between">
-                <div>
-                    <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=774" alt="Honeymoon Suit" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="p-6 pb-0">
-                        <h3 class="text-xl font-bold serif-font text-slate-900 mb-2">Balayı Süiti</h3>
-                        <p class="text-gray-600 text-sm mb-4">Jakuzili, özel ikramlar ve romantik dekorasyon detaylarıyla unutulmaz anlar için.</p>
-                    </div>
-                </div>
-                <div>
-                    <div class="px-6 py-2 flex justify-between items-center border-t border-gray-100 mt-4">
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Gecelik</span>
-                        <span class="text-lg font-semibold text-amber-600">100 EUR</span>
-                    </div>
-                    <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <button onclick="openReservation('Balayı Süiti', 100)" class="w-full bg-slate-900 hover:bg-amber-600 text-white text-xs font-semibold py-2.5 uppercase tracking-wider transition">Odayı Seç</button>
-                    </div>
+        <div id="page-about" class="page-section">
+            <h2 class="section-title" id="title-about">Hakkımızda</h2>
+            <div class="about-grid">
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Luxury Hotel Lobby" class="about-img">
+                <div class="about-text" id="box-about-text">
+                    <p>Full Moon Hotel Fatıh, kurulduğu günden bu yana misafirlerine geleneksel Türk misafirperverliğini küresel lüks standartlarıyla harmanlayarak sunmaktadır. Şehrin en önemli iş, finans ve eğlence merkezlerinin kesişim noktasında yer alan otelimiz, hem iş seyahatleri hem de keyifli tatiller için mükemmel altyapıya sahiptir.</p>
+                    <p>Her biri titizlikle tasarlanmış geniş odalarımız, ödüllü şeflerimizin elinden çıkan gurme restoran lezzetlerimiz ve tüm yorgunluğunuzu unutturacak ödüllü SPA merkezimiz ile ayrıcalıklı bir dünyanın kapılarını aralıyoruz. Amacımız, konakladığınız her anı unutulmaz bir hatıraya dönüştürmektir.</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- DİNAMİK REZERVASYON PANELİ -->
-    <div id="booking-modal" class="fixed inset-0 bg-black/60 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-2xl rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-            <div class="bg-slate-900 text-white p-6 flex justify-between items-center">
-                <h3 class="serif-font text-xl tracking-wide">Güvenli Rezervasyon Paneli</h3>
-                <button onclick="closeReservation()" class="text-gray-400 hover:text-white transition text-xl">&times;</button>
+        <div id="page-rooms" class="page-section">
+            <h2 class="section-title" id="title-rooms">Lüks Odalarımız & Suitler</h2>
+            <div class="rooms-grid">
+                
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80" alt="Standard Room" class="room-img">
+                    <div class="room-details">
+                        <h3>King Standard Room</h3>
+                        <div class="room-price-tag">$150 <span style="font-size:1rem; color:#64748b;">/ Günlük</span></div>
+                        <ul class="room-features">
+                            <li>🌐 Ücretsiz Yüksek Hızlı Wi-Fi</li>
+                            <li>📺 55" Ultra HD Smart TV</li>
+                            <li>☕ Nespro Kahve Makinesi</li>
+                            <li>🏙️ Şehir Manzaralı Geniş Pencere</li>
+                        </ul>
+                        <button class="btn-premium" onclick="bookSpecificRoom('150')" id="btn-book-r1">Hemen Rezervasyon Yap</button>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Deluxe Room" class="room-img">
+                    <div class="room-details">
+                        <h3>Executive Deluxe Suite</h3>
+                        <div class="room-price-tag">$250 <span style="font-size:1rem; color:#64748b;">/ Günlük</span></div>
+                        <ul class="room-features">
+                            <li>🍸 Executive Lounge Erişimi</li>
+                            <li>🏊 Ücretsiz SPA & Masaj Girişi</li>
+                            <li>🛁 Jakuzili Lüks Mermer Banyo</li>
+                            <li>🍾 Hoş Geldiniz İkramları</li>
+                        </ul>
+                        <button class="btn-premium" onclick="bookSpecificRoom('250')" id="btn-book-r2">Hemen Rezervasyon Yap</button>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80" alt="Presidential Suite" class="room-img">
+                    <div class="room-details">
+                        <h3>Presidential King Suite</h3>
+                        <div class="room-price-tag">$450 <span style="font-size:1rem; color:#64748b;">/ Günlük</span></div>
+                        <ul class="room-features">
+                            <li>👑 120m² Özel Geniş Yaşam Alanı</li>
+                            <li>👨‍💼 24 Saat Özel Asistan Hizmeti</li>
+                            <li>🍷 Özel Seçki Mahzen & Bar</li>
+                            <li>Panoramic Adalar & Denız Manzarası</li>
+                        </ul>
+                        <button class="btn-premium" onclick="bookSpecificRoom('450')" id="btn-book-r3">Hemen Rezervasyon Yap</button>
+                    </div>
+                </div>
+
             </div>
+        </div>
+
+        <div id="page-booking" class="page-section">
+            <h2 class="section-title" id="title-booking-main">Güvenli Rezervasyon Sistemi</h2>
             
-            <div class="p-6 max-h-[75vh] overflow-y-auto">
-                <div class="flex items-center justify-center space-x-4 mb-8 text-xs font-semibold uppercase tracking-wider">
-                    <div id="step-1-indicator" class="text-amber-600 border-b-2 border-amber-600 pb-1">1. Bilgiler</div>
-                    <div class="text-gray-300">&rarr;</div>
-                    <div id="step-2-indicator" class="text-gray-400 pb-1">2. Ödeme Seçenekleri</div>
+            <div id="booking-step-1">
+                <div class="booking-card">
+                    <h3 id="txt-sec-1">1. Oda ve Tarih Seçimi</h3>
+                    <div class="form-group">
+                        <label id="lbl-room-type">Oda Tipi</label>
+                        <select class="form-control" id="roomType" onchange="calculateTotal()">
+                            <option value="150" data-tr="Standart Oda (Günlük: 150$)" data-en="Standard Room (Daily: 150$)">Standart Oda (Günlük: 150$)</option>
+                            <option value="250" data-tr="Deluxe Oda (Günlük: 250$)" data-en="Deluxe Room (Daily: 250$)">Deluxe Oda (Günlük: 250$)</option>
+                            <option value="450" data-tr="Kral Dairesi (Günlük: 450$)" data-en="King Suite (Daily: 450$)">Kral Dairesi (Günlük: 450$)</option>
+                        </select>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label id="lbl-checkin">Giriş Tarihi</label>
+                            <input type="date" class="form-control" id="checkinDate" onchange="calculateTotal()">
+                        </div>
+                        <div class="form-group">
+                            <label id="lbl-checkout">Çıkış Tarihi</label>
+                            <input type="date" class="form-control" id="checkoutDate" onchange="calculateTotal()">
+                        </div>
+                    </div>
+                    <div class="price-summary">
+                        <div class="price-row"><span id="lbl-calc-days">Toplam Gün:</span><span id="res-days">0</span></div>
+                        <div class="price-row"><span id="lbl-calc-daily">Günlük Fiyat:</span><span>$<span id="res-daily">150</span></span></div>
+                        <div class="price-row total-price"><span id="lbl-calc-total">Toplam Tutar:</span><span>$<span id="res-total">0</span></span></div>
+                    </div>
                 </div>
 
-                <!-- ADIM 1 -->
-                <div id="booking-step-1" class="space-y-4">
-                    <div class="bg-amber-50 p-4 rounded border border-amber-200/60 mb-4 space-y-1">
-                        <p class="text-sm text-slate-800 font-medium">Seçilen Oda: <span id="modal-room-name" class="font-bold text-amber-700">-</span></p>
-                        <p class="text-xs text-gray-600">Gecelik Fiyat: <span id="modal-room-price" class="font-semibold text-slate-900">-</span></p>
-                        <p class="text-xs text-amber-900 font-medium bg-amber-200/40 px-2 py-1 inline-block rounded">Hesaplanan Süre: <span id="modal-total-days" class="font-bold">-</span></p>
+                <div class="booking-card">
+                    <h3 id="txt-sec-guest">2. Misafir Bilgileri</h3>
+                    <div class="form-row-2">
+                        <div class="form-group"><label id="lbl-guest-name">Adınız</label><input type="text" class="form-control" id="gName" placeholder="John"></div>
+                        <div class="form-group"><label id="lbl-guest-surname">Soyadınız</label><input type="text" class="form-control" id="gSurname" placeholder="Doe"></div>
                     </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Adınız Soyadınız</label>
-                            <input type="text" id="guest-name" placeholder="John Doe" class="w-full border border-gray-300 p-2.5 text-sm rounded focus:outline-amber-600">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">E-Posta Adresi</label>
-                            <input type="email" id="guest-email" placeholder="ornek@mail.com" class="w-full border border-gray-300 p-2.5 text-sm rounded focus:outline-amber-600">
-                        </div>
+                    <div class="form-row-2">
+                        <div class="form-group"><label id="lbl-guest-email">E-posta Adresi</label><input type="email" class="form-control" id="gEmail" placeholder="johndoe@example.com"></div>
+                        <div class="form-group"><label id="lbl-guest-phone">Telefon Numarası</label><input type="tel" class="form-control" id="gPhone" placeholder="+90 555 555 5555"></div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Telefon Numarası</label>
-                        <input type="tel" id="guest-phone" placeholder="+90" class="w-full border border-gray-300 p-2.5 text-sm rounded focus:outline-amber-600">
-                    </div>
-
-                    <button onclick="goToPaymentStep()" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold py-3 rounded transition uppercase tracking-wider mt-4">
-                        Ödeme Aşamasına İlerle &rarr;
-                    </button>
+                    <button type="button" class="btn-premium" id="btn-go-to-payment" onclick="goToPaymentStep()">Ödeme Ekranına İlerle</button>
                 </div>
+            </div>
 
-                <!-- ADIM 2 (DÜZELTİLEN GERÇEK HESAPLAMA ALANI) -->
-                <div id="booking-step-2" class="space-y-6 hidden">
-                    <div class="bg-slate-900 text-white p-4 rounded flex justify-between items-center">
-                        <div class="text-left">
-                            <span class="block text-xs text-gray-400 tracking-wide font-light uppercase">Toplam Süre (<span id="summary-days">1</span> Gece)</span>
-                            <span class="text-sm tracking-wide font-light">TOPLAM ÖDENECEK TUTAR:</span>
+            <div id="booking-step-2" class="hidden">
+                <form id="paymentForm" onsubmit="processFinalPayment(event)">
+                    <div class="booking-card">
+                        <h3 id="txt-sec-payment">3. Ödeme Yöntemi Seçimi</h3>
+                        <div class="payment-methods">
+                            <div class="payment-tab active" id="tab-card" onclick="switchPaymentMethod('card')">💳 Kredi Kartı</div>
+                            <div class="payment-tab" id="tab-transfer" onclick="switchPaymentMethod('transfer')">🏦 Havale / EFT</div>
                         </div>
-                        <span id="final-total-price" class="text-2xl font-bold text-amber-500">-</span>
-                    </div>
 
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-600 mb-3">Ödeme Yöntemi Seçiniz</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <label class="border-2 border-amber-600 rounded p-4 flex items-start space-x-3 cursor-pointer bg-amber-50/40">
-                                <input type="radio" name="payment-method" checked class="mt-1 accent-amber-600" onclick="togglePaymentFields('card')">
-                                <div>
-                                    <span class="block text-sm font-semibold text-slate-900">Kredi Kartı / Banka Kartı</span>
-                                    <span class="block text-xs text-gray-500 mt-1">Anında onaylanır, güvenli 3D ödeme.</span>
-                                </div>
-                            </label>
-                            <label class="border border-gray-200 rounded p-4 flex items-start space-x-3 cursor-pointer hover:bg-gray-50">
-                                <input type="radio" name="payment-method" class="mt-1 accent-amber-600" onclick="togglePaymentFields('bank')">
-                                <div>
-                                    <span class="block text-sm font-semibold text-slate-900">Banka Havalesi / EFT</span>
-                                    <span class="block text-xs text-gray-500 mt-1">Hesap numaralarımıza 24 saat içinde transfer.</span>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div id="card-payment-inputs" class="space-y-3 bg-gray-50 p-4 rounded border border-gray-200">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Kart Üzerindeki İsim</label>
-                            <input type="text" class="w-full bg-white border border-gray-300 p-2 text-sm rounded focus:outline-amber-600">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Kart Numarası</label>
-                            <input type="text" placeholder="0000 0000 0000 0000" class="w-full bg-white border border-gray-300 p-2 text-sm rounded focus:outline-amber-600">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-1">Son Kullanma (AA/YY)</label>
-                                <input type="text" placeholder="MM/YY" class="w-full bg-white border border-gray-300 p-2 text-sm rounded focus:outline-amber-600">
+                        <div id="payment-card-content" class="payment-content active">
+                            <div class="form-group">
+                                <label id="lbl-card-name">Kart Üzerindeki İsim</label>
+                                <input type="text" class="form-control" id="cardName" placeholder="John Doe">
                             </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-1">CVC / CVV</label>
-                                <input type="text" placeholder="000" class="w-full bg-white border border-gray-300 p-2 text-sm rounded focus:outline-amber-600">
+                            <div class="credit-card-zone">
+                                <div class="form-group">
+                                    <label id="lbl-card-num">Kart Numarası</label>
+                                    <input type="text" class="form-control" id="cardNumInput" placeholder="0000 0000 0000 0000" maxlength="19">
+                                </div>
+                                <div class="form-group">
+                                    <label id="lbl-card-exp">Sona Erme (AA/YY)</label>
+                                    <input type="text" class="form-control" id="cardExpiryInput" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group"><label>CVC</label><input type="text" class="form-control" id="cardCvc" placeholder="000" maxlength="3"></div>
+                            </div>
+                        </div>
+
+                        <div id="payment-reception" class="payment-content">
+                            <div class="payment-reception-box">
+                                <p style="margin-top: 10px; font-size: 0.85rem; color: #ef4444;" id="txt-transfer-note">* Lütfen açıklama kısmına adınızı ve soyadınızı yazınız.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div id="bank-payment-inputs" class="hidden bg-gray-50 p-4 rounded border border-gray-200 text-sm space-y-2">
-                        <p class="font-semibold text-slate-900">Full Moon Otelcilik A.Ş.</p>
-                        <p class="text-xs text-gray-600">Ziraat Bankası - TR56 0001 0009 9012 3456 5001</p>
-                        <p class="text-xs text-gray-400 italic">* Rezervasyon kodunuzu transfer açıklama kısmına yazınız.</p>
-                    </div>
+                    <div class="booking-card">
+                        <h3 id="txt-sec-3">4. Sözleşmeler ve Onay</h3>
+                        <label style="font-weight: bold;" id="contract-title-1">Mesafeli Satış Sözleşmesi</label>
+                        <div class="legal-box" id="contract-body-1">Bu sözleşme, alıcının satıcıya ait web sitesi üzerinden yaptığı konaklama rezervasyon hizmetine dair hak ve yükümlülükleri belirler. Rezervasyon onaylandığında hizmet bedeli tahsil edilir.</div>
+                        
+                        <label style="font-weight: bold;" id="contract-title-2">Gizlilik Sözleşmesi</label>
+                        <div class="legal-box" id="contract-body-2">Girdiğiniz kredi kartı ve kişisel verileriniz SSL sertifikaları ile korunmakta olup, üçüncü şahıslarla asla paylaşılmamaktadır. Verileriniz yalnızca rezervasyon işlemi için işlenir.</div>
 
-                    <div class="flex space-x-3">
-                        <button onclick="goToInfoStep()" class="w-1/3 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-3 rounded transition uppercase tracking-wider">
-                            Geri Dön
-                        </button>
-                        <button onclick="completeBooking()" class="w-2/3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded transition uppercase tracking-wider shadow-md">
-                            Ödemeyi Tamamla ve Rezervasyonu Bitir
-                        </button>
+                        <label style="font-weight: bold;" id="contract-title-3">İptal ve İade Sözleşmesi</label>
+                        <div class="legal-box" id="contract-body-3">Giriş tarihine 24 saat kalana kadar yapılan iptallerde ücretin tamamı iade edilir. Son 24 saat içinde yapılan iptallerde ilk gece ücreti kesintisi uygulanır.</div>
+
+                        <label class="checkbox-group">
+                            <input type="checkbox" id="termsCheckbox" onchange="toggleSubmitButton()">
+                            <span id="lbl-checkbox-text">Yukarıdaki tüm sözleşmeleri okudum ve kabul ediyorum.</span>
+                        </label>
+                        <button type="submit" class="btn-premium" id="submitBtn" disabled>Ödemeyi Güvenle Onayla</button>
                     </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="page-contact" class="page-section">
+            <h2 class="section-title" id="title-contact">İletişim</h2>
+            <div class="contact-grid">
+                <div class="info-card">
+                    <div class="info-item">
+                        <strong id="lbl-c-adr">Adres</strong>
+                        <p>Şehsuvar Bey Mah. Behram Çavuş Sok. No:8, Fatih / İstanbul </p>
+                    </div>
+                    <div class="info-item">
+                        <strong id="lbl-c-phn">Telefon & E-posta</strong>
+                        <p>+90 (530) 400 41 99 <br> fullmoonturizm@outlook.com</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <form onsubmit="event.preventDefault(); alert('Mesajınız başarıyla iletildi!'); this.reset();">
+                        <div class="form-group"><input type="text" class="form-control" required placeholder="Adınız Soyadınız"></div>
+                        <div class="form-group"><input type="email" class="form-control" required placeholder="E-posta Adresiniz"></div>
+                        <div class="form-group"><textarea class="form-control" rows="4" required placeholder="Mesajınız..."></textarea></div>
+                        <button type="submit" class="btn-premium">Mesaj Gönder</button>
+                    </form>
                 </div>
             </div>
         </div>
+
     </div>
 
-    <!-- İLETİŞİM VE FOOTER -->
-    <section id="iletisim" class="bg-slate-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-                <h3 class="text-xl font-medium serif-font text-amber-600 mb-6 tracking-wide">İletişim Bilgileri</h3>
-                <ul class="space-y-4 text-sm text-gray-400">
-                    <li class="flex items-start">
-                        <i class="fa-solid fa-location-dot mt-1 mr-3 text-amber-600"></i>
-                        <span>Şehsuvar Bey Mah. Behram Çavuş Sok. No:8, Fatih / İstanbul</span>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fa-solid fa-phone mr-3 text-amber-600"></i>
-                        <a href="tel:+905304004199" class="hover:text-white transition">+90 (530) 400 41 99 </a>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fa-solid fa-envelope mr-3 text-amber-600"></i>
-                        <a href="mailto:info@fullmoonhotel.com" class="hover:text-white transition">fullmoonturizm@outlook.com</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xl font-medium serif-font text-amber-600 mb-6 tracking-wide">Kurumsal</h3>
-                <ul class="space-y-2 text-sm text-gray-400">
-                    <li><a href="#hakkimizda" class="hover:text-white transition">Hakkımızda</a></li>
-                    <li><a href="#" class="hover:text-white transition">KVKK Politikası</a></li>
-                    <li><a href="#" class="hover:text-white transition">Konaklama Şartları</a></li>
-                </ul>
-            </div>
-            <div class="flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl font-medium serif-font text-amber-600 mb-6 tracking-wide">Sosyal Medya</h3>
-                    <div class="flex space-x-4 text-xl text-gray-400">
-                        <a href="#" class="hover:text-amber-600 transition"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="hover:text-amber-600 transition"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="hover:text-amber-600 transition"><i class="fa-brands fa-x-twitter"></i></a>
-                    </div>
-                </div>
-                <p class="text-xs text-gray-500 mt-8 md:mt-0">
-                    &copy; 2026 Full Moon HOTEL. Tüm Hakları Saklıdır.
-                </p>
-            </div>
-        </div>
-    </section>
+    <footer>
+        <p>&copy; Full Moon Hotel Fatıh . All Luxury Rights Reserved.</p>
+    </footer>
 
-    <!-- HESAPLAMA MANTIĞI YENİLENEN JAVASCRIPT KODLARI -->
     <script>
-        let selectedRoomName = "";
-        let selectedRoomPrice = 0;
-        let totalCalculatedDays = 1;
+        // Sayfa Değiştirme Sistemi (SPA Navigasyon)
+        function showPage(pageId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
 
-        // Tarih girdilerini okuyup farkı milisaniyeden güne çeviren dinamik fonksiyon
-        function calculateDays() {
-            const checkinVal = document.getElementById('main-checkin').value;
-            const checkoutVal = document.getElementById('main-checkout').value;
-
-            if (checkinVal && checkoutVal) {
-                const date1 = new Date(checkinVal);
-                const date2 = new Date(checkoutVal);
-                
-                const timeDiff = date2.getTime() - date1.getTime();
-                const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-                
-                // Kullanıcı hatalı tarih seçerse veya aynı günü seçerse minimum 1 gece sayar
-                return dayDiff > 0 ? dayDiff : 1;
+            document.getElementById('page-' + pageId).classList.add('active');
+            const targetNav = document.getElementById('nav-' + pageId);
+            if(targetNav) targetNav.classList.add('active');
+            
+            // Eğer rezervasyon sayfasına dönülüyorsa adımları sıfırla
+            if(pageId === 'booking') {
+                document.getElementById('booking-step-2').classList.add('hidden');
+                document.getElementById('booking-step-1').classList.remove('hidden');
             }
-            return 1; // Eğer tarih seçilmediyse otomatik 1 gün hesaplar
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Üst arama motorundaki "Odayı Seç & İlerle" butonu tetiklendiğinde çalışan fonksiyon
-        function triggerMainForm() {
-            const selectElement = document.getElementById('room-selection');
-            const selectedValue = selectElement.value.split('|');
-            const roomName = selectedValue[0];
-            const roomPrice = parseInt(selectedValue[1]);
-
-            openReservation(roomName, roomPrice);
+        // Odalar sekmesinden tıklandığında otomatik odayı seçip rezervasyona atma
+        function bookSpecificRoom(price) {
+            document.getElementById('roomType').value = price;
+            calculateTotal();
+            showPage('booking');
         }
 
-        // PANELİ AÇAN VE ASIL TOPLAM HESAPLAMAYI YAPAN ANA FONKSİYON
-        function openReservation(roomName, price) {
-            selectedRoomName = roomName;
-            selectedRoomPrice = price;
+        // Tarih Kurulumları
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('checkinDate').value = today.toISOString().split('T')[0];
+        document.getElementById('checkoutDate').value = tomorrow.toISOString().split('T')[0];
 
-            // Tarih seçilip seçilmediğini anlık olarak kontrol eder ve gün sayısını günceller
-            totalCalculatedDays = calculateDays();
+        // Maskeleme Scriptleri
+        document.getElementById('cardNumInput').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            let newVal = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) newVal += ' ';
+                newVal += value[i];
+            }
+            e.target.value = newVal;
+        });
 
-            // Matematiksel Toplam Fiyat Hesaplama (Gün Sayısı x Oda Fiyatı)
-            const finalTotalPrice = selectedRoomPrice * totalCalculatedDays;
+        document.getElementById('cardExpiryInput').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            } else {
+                e.target.value = value;
+            }
+        });
 
-            // DOM Elemanlarını Güncelleme
-            document.getElementById('modal-room-name').innerText = roomName;
-            document.getElementById('modal-room-price').innerText = price + " EUR (Gecelik)";
-            document.getElementById('modal-total-days').innerText = totalCalculatedDays + " Gece";
-            
-            // Ödeme sayfasındaki (Adım 2) toplam alanlarını senkronize etme
-            document.getElementById('summary-days').innerText = totalCalculatedDays;
-            document.getElementById('final-total-price').innerText = finalTotalPrice + " EUR";
-            
-            // Paneli görünür yap
-            document.getElementById('booking-modal').classList.remove('hidden');
-            goToInfoStep();
-        }
+        // Dil Veritabanı
+        const langData = {
+            tr: {
+                heroTitle: "Full Moon Hotel Fatıh",
+                heroSub: "İstanbul'un Kalbinde, Kusursuz Bir Premium Konaklama ve Konfor Deneyimi",
+                titleHomeWelcome: "Lüksün Yeni Tanımıyla Tanışın",
+                pHomeDesc: "Avrupa  yakasının en prestijli lokasyonunda, rüya gibi bir konaklama için hazır mısınız? Özel tasarım suitlerimiz ve dünya standartlarındaki hizmet kalitemizle sizleri bekliyoruz.",
+                btnHomeDiscover: "Odaları Keşfet",
+                titleAbout: "Hakkımızda",
+                titleRooms: "Lüks Odalarımız & Suitler",
+                titleBookingMain: "Güvenli Rezervasyon Sistemi",
+                titleContact: "İletişim",
+                sec1: "1. Oda ve Tarih Seçimi",
+                secGuest: "2. Misafir Bilgileri",
+                secPayment: "3. Ödeme Yöntemi Seçimi",
+                sec3: "4. Sözleşmeler ve Onay",
+                roomType: "Oda Tipi",
+                checkin: "Giriş Tarihi",
+                checkout: "Çıkış Tarihi",
+                calcDays: "Toplam Gün:",
+                calcDaily: "Günlük Fiyat:",
+                calcTotal: "Toplam Tutar:",
+                guestName: "Adınız",
+                guestSurname: "Soyadınız",
+                guestEmail: "E-posta Adresi",
+                guestPhone: "Telefon Numarası",
+                cardName: "Kart Üzerindeki İsim",
+                cardNum: "Kart Numarası",
+                cardExp: "Sona Erme (AA/YY)",
+                checkboxText: "Yukarıdaki tüm sözleşmeleri okudum ve kabul ediyorum.",
+                btnGoPay: "Ödeme Ekranına İlerle",
+                btnFinal: "Ödemeyi Güvenle Onayla",
+                alertSuccess: "Tebrikler! Ödemeniz doğrulandı ve premium konaklama rezervasyonunuz tamamlandı.",
+                alertError: "Lütfen tüm misafir bilgilerini eksiksiz doldurun ve tarihleri kontrol edin.",
+                alertCardError: "Lütfen kredi kartı bilgilerini eksiksiz doldurun.",
+                transferNote: "* Lütfen açıklama kısmına adınızı ve soyadınızı yazınız.",
+                cTitle1: "Mesafeli Satış Sözleşmesi",
+                cBody1: "Bu sözleşme, alıcının satıcıya ait web sitesi üzerinden yaptığı konaklama rezervasyon hizmetine dair hak ve yükümlülükleri belirler. Rezervasyon onaylandığında hizmet bedeli tahsil edilir.",
+                cTitle2: "Gizlilik Sözleşmesi",
+                cBody2: "Girdiğiniz kredi kartı ve kişisel verileriniz SSL sertifikaları ile korunmakta olup, üçüncü şahıslarla asla paylaşılmamaktadır. Verileriniz yalnızca rezervasyon işlemi için işlenir.",
+                cTitle3: "İptal ve İade Sözleşmesi",
+                cBody3: "Giriş tarihine 24 saat kalana kadar yapılan iptallerde ücretin tamamı iade edilir. Son 24 saat içinde yapılan iptallerde ilk gece ücreti kesintisi uygulanır."
+            },
+            en: {
+                heroTitle: "Full Moon Hotel",
+                heroSub: "An Flawless Premium Accommodation & Comfort Experience in the Heart of Istanbul",
+                titleHomeWelcome: "Meet the New Definition of Luxury",
+                pHomeDesc: "Are you ready for a dream stay in the most prestigious location on the Asian side? We await you with our custom-designed suites and world-class service quality.",
+                btnHomeDiscover: "Discover Rooms",
+                titleAbout: "About Us",
+                titleRooms: "Luxury Rooms & Suites",
+                titleBookingMain: "Secure Booking System",
+                titleContact: "Contact",
+                sec1: "1. Room & Date Selection",
+                secGuest: "2. Guest Information",
+                secPayment: "3. Choose Payment Method",
+                sec3: "4. Terms & Agreement",
+                roomType: "Room Type",
+                checkin: "Check-in Date",
+                checkout: "Check-out Date",
+                calcDays: "Total Days:",
+                calcDaily: "Daily Price:",
+                calcTotal: "Total Amount:",
+                guestName: "First Name",
+                guestSurname: "Last Name",
+                guestEmail: "Email Address",
+                guestPhone: "Phone Number",
+                cardName: "Name on Card",
+                cardNum: "Card Number",
+                cardExp: "Expiration (MM/YY)",
+                checkboxText: "I have read and agree to all the terms and contracts above.",
+                btnGoPay: "Proceed to Payment",
+                btnFinal: "Confirm Payment Safely",
+                alertSuccess: "Congratulations! Your payment has been verified and your premium booking is complete.",
+                alertError: "Please fill out all guest forms correctly and verify dates.",
+                alertCardError: "Please fill out all credit card fields.",
+                transferNote: "* Please include your full name in the transfer description.",
+                cTitle1: "Distance Selling Agreement",
+                cBody1: "This agreement defines the rights and obligations regarding the accommodation reservation service made by the buyer on the seller's website. The service fee is collected upon approval.",
+                cTitle2: "Privacy Policy",
+                cBody2: "Your credit card and personal data entered are protected by SSL certificates and are never shared with third parties. Your data is processed only for booking operations.",
+                cTitle3: "Cancellation & Refund Policy",
+                cBody3: "Cancellations made up to 24 hours before the arrival date will receive a full refund. For cancellations within the last 24 hours, a first-night fee will be charged."
+            }
+        };
 
-        function closeReservation() {
-            document.getElementById('booking-modal').classList.add('hidden');
-        }
+        let currentPaymentMethod = 'card';
 
         function goToPaymentStep() {
-            const name = document.getElementById('guest-name').value;
-            const email = document.getElementById('guest-email').value;
-            const phone = document.getElementById('guest-phone').value;
+            const lang = document.getElementById('langSelect').value;
+            const days = parseInt(document.getElementById('res-days').innerText);
+            
+            const name = document.getElementById('gName').value.trim();
+            const surname = document.getElementById('gSurname').value.trim();
+            const email = document.getElementById('gEmail').value.trim();
+            const phone = document.getElementById('gPhone').value.trim();
 
-            if(!name || !email || !phone) {
-                alert("Lütfen tüm iletişim bilgilerini eksiksiz doldurunuz.");
+            if (days <= 0 || !name || !surname || !email || !phone) {
+                alert(langData[lang].alertError);
                 return;
             }
 
             document.getElementById('booking-step-1').classList.add('hidden');
             document.getElementById('booking-step-2').classList.remove('hidden');
-            
-            document.getElementById('step-1-indicator').className = "text-gray-400 pb-1";
-            document.getElementById('step-2-indicator').className = "text-amber-600 border-b-2 border-amber-600 pb-1";
         }
 
-        function goToInfoStep() {
-            document.getElementById('booking-step-2').classList.add('hidden');
-            document.getElementById('booking-step-1').classList.remove('hidden');
+        function switchPaymentMethod(method) {
+            currentPaymentMethod = method;
+            document.getElementById('tab-card').classList.remove('active');
+            document.getElementById('tab-transfer').classList.remove('active');
+            document.getElementById('payment-card-content').classList.remove('active');
+            document.getElementById('payment-transfer-content').classList.remove('active');
 
-            document.getElementById('step-2-indicator').className = "text-gray-400 pb-1";
-            document.getElementById('step-1-indicator').className = "text-amber-600 border-b-2 border-amber-600 pb-1";
-        }
-
-        function togglePaymentFields(type) {
-            if(type === 'card') {
-                document.getElementById('card-payment-inputs').classList.remove('hidden');
-                document.getElementById('bank-payment-inputs').classList.add('hidden');
+            if(method === 'card') {
+                document.getElementById('tab-card').classList.add('active');
+                document.getElementById('payment-card-content').classList.add('active');
             } else {
-                document.getElementById('card-payment-inputs').classList.add('hidden');
-                document.getElementById('bank-payment-inputs').classList.remove('hidden');
+                document.getElementById('tab-transfer').classList.add('active');
+                document.getElementById('payment-transfer-content').classList.add('active');
             }
         }
 
-        function completeBooking() {
-            const finalTotalPrice = selectedRoomPrice * totalCalculatedDays;
-            alert("Tebrikler! " + totalCalculatedDays + " gecelik rezervasyon talebiniz ve " + finalTotalPrice + " EUR tutarındaki ödeme işleminiz başarıyla alındı.");
-            closeReservation();
+        function calculateTotal() {
+            const roomPrice = parseFloat(document.getElementById('roomType').value);
+            const checkin = new Date(document.getElementById('checkinDate').value);
+            const checkout = new Date(document.getElementById('checkoutDate').value);
+            
+            if (checkout <= checkin) {
+                document.getElementById('res-days').innerText = "0";
+                document.getElementById('res-total').innerText = "0";
+                return;
+            }
+
+            const days = Math.ceil(Math.abs(checkout - checkin) / (1000 * 60 * 60 * 24));
+            document.getElementById('res-days').innerText = days;
+            document.getElementById('res-daily').innerText = roomPrice;
+            document.getElementById('res-total').innerText = days * roomPrice;
         }
+
+        function toggleSubmitButton() {
+            const checkbox = document.getElementById('termsCheckbox');
+            document.getElementById('submitBtn').disabled = !checkbox.checked;
+        }
+
+        function changeLanguage() {
+            const lang = document.getElementById('langSelect').value;
+            const data = langData[lang];
+
+            document.getElementById('txt-hero-title').innerText = data.heroTitle;
+            document.getElementById('txt-hero-sub').innerText = data.heroSub;
+            document.getElementById('title-home-welcome').innerText = data.titleHomeWelcome;
+            document.getElementById('p-home-desc').innerText = data.pHomeDesc;
+            document.getElementById('btn-home-discover').innerText = data.btnHomeDiscover;
+            document.getElementById('title-about').innerText = data.titleAbout;
+            document.getElementById('title-rooms').innerText = data.titleRooms;
+            document.getElementById('title-booking-main').innerText = data.titleBookingMain;
+            document.getElementById('title-contact').innerText = data.titleContact;
+
+            document.getElementById('txt-sec-1').innerText = data.sec1;
+            document.getElementById('txt-sec-guest').innerText = data.secGuest;
+            document.getElementById('txt-sec-payment').innerText = data.secPayment;
+            document.getElementById('txt-sec-3').innerText = data.sec3;
+            document.getElementById('lbl-room-type').innerText = data.roomType;
+            document.getElementById('lbl-checkin').innerText = data.checkin;
+            document.getElementById('lbl-checkout').innerText = data.checkout;
+            document.getElementById('lbl-calc-days').innerText = data.calcDays;
+            document.getElementById('lbl-calc-daily').innerText = data.calcDaily;
+            document.getElementById('lbl-calc-total').innerText = data.calcTotal;
+            document.getElementById('lbl-guest-name').innerText = data.guestName;
+            document.getElementById('lbl-guest-surname').innerText = data.guestSurname;
+            document.getElementById('lbl-guest-email').innerText = data.guestEmail;
+            document.getElementById('lbl-guest-phone').innerText = data.guestPhone;
+            document.getElementById('lbl-card-name').innerText = data.cardName;
+            document.getElementById('lbl-card-num').innerText = data.cardNum;
+            document.getElementById('lbl-card-exp').innerText = data.cardExp;
+            document.getElementById('lbl-checkbox-text').innerText = data.checkboxText;
+            document.getElementById('btn-go-to-payment').innerText = data.btnGoPay;
+            document.getElementById('submitBtn').innerText = data.btnFinal;
+            document.getElementById('txt-transfer-note').innerText = data.transferNote;
+
+            document.getElementById('contract-title-1').innerText = data.cTitle1;
+            document.getElementById('contract-body-1').innerText = data.cBody1;
+            document.getElementById('contract-title-2').innerText = data.cTitle2;
+            document.getElementById('contract-body-2').innerText = data.cBody2;
+            document.getElementById('contract-title-3').innerText = data.cTitle3;
+            document.getElementById('contract-body-3').innerText = data.cBody3;
+
+            const options = document.getElementById('roomType').options;
+            for (let i = 0; i < options.length; i++) {
+                options[i].text = options[i].getAttribute('data-' + lang);
+            }
+            calculateTotal();
+        }
+
+        function processFinalPayment(event) {
+            event.preventDefault();
+            const lang = document.getElementById('langSelect').value;
+
+            if (currentPaymentMethod === 'card') {
+                const cName = document.getElementById('cardName').value.trim();
+                const cNum = document.getElementById('cardNumInput').value.trim();
+                const cExp = document.getElementById('cardExpiryInput').value.trim();
+                const cCvc = document.getElementById('cardCvc').value.trim();
+
+                if(!cName || !cNum || !cExp || !cCvc) {
+                    alert(langData[lang].alertCardError);
+                    return;
+                }
+            }
+
+            alert(langData[lang].alertSuccess);
+            document.getElementById('paymentForm').reset();
+            document.getElementById('termsCheckbox').checked = false;
+            toggleSubmitButton();
+            calculateTotal();
+            showPage('home');
+        }
+
+        calculateTotal();
     </script>
 </body>
 </html>
